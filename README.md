@@ -22,7 +22,7 @@ PermitRootLogin no
 
 sudo systemctl restart ssh
 
-sudo apt install -y git autojump docker.io
+sudo apt install -y git autojump docker.io docker-compose
 
 # Setup SWAP (4Gig)
 sudo fallocate -l 4G /swapfile
