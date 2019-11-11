@@ -29,7 +29,6 @@ RUN ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/defa
 RUN ln -sf /etc/nginx/sites-available/sosapp.conf /etc/nginx/sites-enabled/sosapp.conf
 RUN ln -sf /etc/nginx/sites-available/qsapp.conf /etc/nginx/sites-enabled/qsapp.conf
 RUN ln -sf /etc/nginx/sites-available/marut.conf /etc/nginx/sites-enabled/marut.conf
-RUN mkdir /var/www/certbot
 
 RUN [ -f /etc/ssl/certs/dhparam.pem ] || openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 4096
 
