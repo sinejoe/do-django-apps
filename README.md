@@ -22,7 +22,7 @@ PermitRootLogin no
 
 sudo systemctl restart ssh
 
-sudo apt install -y git autojump docker.io docker-compose
+sudo apt install -y git autojump apt-transport-https ca-certificates curl software-properties-common
 
 # Setup SWAP (4Gig)
 sudo fallocate -l 4G /swapfile
@@ -57,5 +57,38 @@ mkdir /var/www/certbot
 cd /var/www
 git clone git@github.com:sinejoe/do-django-apps.git
 
+# Install docker, docker-compose latest
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository  "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
+sudo apt update
+sudo apt -y install docker-ce
+
+sudo usermod -aG docker ${USER}
+su - ${USER}
+sudo curl -L "https://github.com/docker/compose/releases/download/{LATEST STABLE VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+cd /var/www/do-django-apps
+docker-compose up --no-start
+
+
+
+
+
+
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
