@@ -1,0 +1,6 @@
+uWSGI>=2.0.18
+Django>=2.2.7
+Pillow>=6.2.1
+ShopifyAPI>=5.1.2
+mysqlclient>=1.4.5
+python-dateutil>=2.8.1

@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  django-apps:
+    build: .
+    image: django-apps
+    restart: always
+    container_name: django-apps
+    networks:
+      - django-apps
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - django-apps-mysql
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/:/var/www/
+    working_dir: /var/www/
+    stdin_open: true
+    tty: true
+  django-apps-mysql:
+    image: mysql:8
+    restart: always
+    container_name: django-apps-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=sine9455
+    ports:
+      - 3306:3306
+    networks:
+      - django-apps
+    volumes:
+      - /var/www/do-django-apps/my.cnf:/etc/mysql/conf.d/my.cnf
+      - /var/www/db:/var/lib/mysql
+networks:
+  django-apps:
+    name: django-apps-network
