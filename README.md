@@ -68,8 +68,27 @@ su - ${USER}
 sudo curl -L "https://github.com/docker/compose/releases/download/{LATEST STABLE VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
+
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:certbot/certbot -y
+sudo apt update
+sudo apt install certbot -y
+sudo apt -y dist-upgrade
+sudo apt -y autoremove
+sudo systemctl reboot
+sudo certbot register
+
+sudo nano /etc/letsencript/cli.ini
+    # Add to top
+    rsa-key-size = 4096
+    authenticator = webroot
+    webroot-path = /var/www/certbot/
+    work-dir = /tmp/letsencrypt
+    logs-dir = /var/log/letsencrypt
+
 cd /var/www/do-django-apps
 docker-compose up --no-start
+
 
 
 

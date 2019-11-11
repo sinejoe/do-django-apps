@@ -8,6 +8,7 @@ RUN apt-get update && \
     nginx \
     nano \
     apt-utils \
+    software-properties-common \
     default-mysql-client \
     default-libmysqlclient-dev \
     supervisor && \
@@ -44,6 +45,8 @@ RUN chmod a+w -R /var/log/uwsgi/app/
 COPY wsgi/*.ini /etc/uwsgi/
 
 COPY supervisord.conf /etc/supervisord.conf
+
+ENV MYSQL_HOST='django-apps-mysql'
 
 WORKDIR /var/www/
 
